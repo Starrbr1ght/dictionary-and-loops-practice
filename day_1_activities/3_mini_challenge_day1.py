@@ -16,7 +16,7 @@
 
             # Students must:
 
-            # Describe the search process
+            
 
 ## be able to add new data
 # Your program must allow the secretary to ADD a brand new student
@@ -56,5 +56,73 @@
         #    - Do NOT add the student
         #    - Display an error message saying the CPS ID is already taken
 
+import student_data
+
+def cps_id_exists(cps_id):
+    for student in student:
+        if student["cps_id"] == cps_id:
+            return True
+    return False
+
+CPSID= int(input("Enter your CPS ID"))
+First_name= input("ejnter your first name")
+Last_name= input("enter your last name")
+Middle_name= input("enter your middle name")
+homeroom= input("enter your homeroom")
+grade_level= int(input("enter your grade level"))
+Primary_email= input("enter your primary email")
+secondary_email= input("enter your second email")
 
 
+student = {
+        "cps_id": CPSID,
+        "name": f"{Last_name}, {First_name}",
+        "middle_name": Middle_name,
+        "homeroom": homeroom,
+        "grade_level": grade_level,
+        "primary_email": Primary_email,
+        "secondary_email": secondary_email
+    }
+
+student.update(student)
+print("students added")
+print("Total students:", len(student))
+print(student)
+
+def lookup_student():
+    name = input("Enter full name (Last, First): ")
+
+    for student in student:
+        if student["name"] == name:
+            print("CPS ID:", student["cps_id"])
+            print("Homeroom:", student["homeroom"])
+            print("Grade Level:", student["grade_level"])
+            print("Primary Email:", student["primary_email"])
+            return
+
+    print("Student not found.")
+
+
+# Main loop
+while True:
+    print("\n1. Lookup Student")
+    print("2. Add Student")
+    print("3. Exit")
+
+    choice = input("Choice: ")
+
+    if choice == "1":
+        lookup_student()
+    elif choice == "2":
+        ()
+    elif choice == "3":
+        break
+  # 1. Ask the user for the following information:
+    #    - CPS ID
+    #    - First Name
+    #    - Last Name
+    #    - Middle Name
+    #    - Homeroom
+    #    - Grade Level
+    #    - Primary Email
+    #    - Secondary Email
