@@ -57,12 +57,10 @@
         #    - Display an error message saying the CPS ID is already taken
 
 import student_data
-
-students = student_data.students
-
+print(student_data)
 
 def cps_id_exists(cps_id):
-    for student in students:
+    for student in student_data:
         if student["cps_id"] == cps_id:
             return True
     return False
@@ -83,11 +81,9 @@ def add_student():
     primary_email = input("Enter Primary Email: ")
     secondary_email = input("Enter Secondary Email: ")
 
-    full_name = f"{last_name}, {first_name}"
-
-    new_student = {
+    student = {
         "cps_id": cps_id,
-        "name": full_name,
+        "name": f"{last_name}, {first_name}",
         "middle_name": middle_name,
         "homeroom": homeroom,
         "grade_level": grade_level,
@@ -95,11 +91,11 @@ def add_student():
         "secondary_email": secondary_email
     }
 
-    students.append(new_student)
+    students.append(student)
 
-    print("Student successfully added")
+    print("Student added")
     print("Total students:", len(students))
-    print(new_student)
+    print(student)
 
 
 def lookup_student():
@@ -129,9 +125,6 @@ while True:
         add_student()
     elif choice == "3":
         break
-    }
-
-
   # 1. Ask the user for the following information:
     #    - CPS ID
     #    - First Name
