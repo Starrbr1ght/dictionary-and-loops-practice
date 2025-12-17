@@ -58,41 +58,54 @@
 
 import student_data
 
+students = student_data.students
+
+
 def cps_id_exists(cps_id):
-    for student in student:
+    for student in students:
         if student["cps_id"] == cps_id:
             return True
     return False
 
-CPSID= int(input("Enter your CPS ID"))
-First_name= input("ejnter your first name")
-Last_name= input("enter your last name")
-Middle_name= input("enter your middle name")
-homeroom= input("enter your homeroom")
-grade_level= int(input("enter your grade level"))
-Primary_email= input("enter your primary email")
-secondary_email= input("enter your second email")
 
+def add_student():
+    cps_id = int(input("Enter CPS ID: "))
 
-student = {
-        "cps_id": CPSID,
-        "name": f"{Last_name}, {First_name}",
-        "middle_name": Middle_name,
+    if cps_id_exists(cps_id):
+        print("ERROR: CPS ID already exists.")
+        return
+
+    first_name = input("Enter First Name: ")
+    last_name = input("Enter Last Name: ")
+    middle_name = input("Enter Middle Name: ")
+    homeroom = input("Enter Homeroom: ")
+    grade_level = int(input("Enter Grade Level: "))
+    primary_email = input("Enter Primary Email: ")
+    secondary_email = input("Enter Secondary Email: ")
+
+    full_name = f"{last_name}, {first_name}"
+
+    new_student = {
+        "cps_id": cps_id,
+        "name": full_name,
+        "middle_name": middle_name,
         "homeroom": homeroom,
         "grade_level": grade_level,
-        "primary_email": Primary_email,
+        "primary_email": primary_email,
         "secondary_email": secondary_email
     }
 
-student.update(student)
-print("students added")
-print("Total students:", len(student))
-print(student)
+    students.append(new_student)
+
+    print("Student successfully added")
+    print("Total students:", len(students))
+    print(new_student)
+
 
 def lookup_student():
     name = input("Enter full name (Last, First): ")
 
-    for student in student:
+    for student in students:
         if student["name"] == name:
             print("CPS ID:", student["cps_id"])
             print("Homeroom:", student["homeroom"])
@@ -100,10 +113,9 @@ def lookup_student():
             print("Primary Email:", student["primary_email"])
             return
 
-    print("Student not found.")
+    print("Student not found")
 
 
-# Main loop
 while True:
     print("\n1. Lookup Student")
     print("2. Add Student")
@@ -114,9 +126,12 @@ while True:
     if choice == "1":
         lookup_student()
     elif choice == "2":
-        ()
+        add_student()
     elif choice == "3":
         break
+    }
+
+
   # 1. Ask the user for the following information:
     #    - CPS ID
     #    - First Name
